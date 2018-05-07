@@ -14,7 +14,14 @@ class Fases extends Migration
     {
         //
         Schema::create('ib35a_fases',function(Blueprint $table){
-            
+            $table->increments('id');
+            $table->string('descriptor',200)->comment('Referencia de la tabla casos');
+            $table->integer('codTribunal');
+            $table->integer('codProcurador');
+            $table->date('fecha_inicio');
+            $table->date('fecha_creacion');
+            $table->string('tomo');
+            $table->string('carpeta');
         });
     }
 
@@ -26,5 +33,6 @@ class Fases extends Migration
     public function down()
     {
         //
+        Schema::drop('ib35a_fases');
     }
 }

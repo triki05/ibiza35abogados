@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Subfases extends Migration
+class Gastos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class Subfases extends Migration
     public function up()
     {
         //
-        Schema::create('ib35a_subfases',function(Blueprint $table){
+        Schema::create('ib35a_gastos',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('idFases');
-            $table->string('descriptor')->comment('Tipo de recurso');
-            $table->string('numero_autos');
-            $table->string('tribunal');
-            $table->text('descripcion');
+            $table->date('fecha');
+            $table->decimal('importe_gasto',5,2);
+            $table->smallInteger('iva');
+            $table->decimal('base_imponible',5,2);
+            $table->string('concepto');
+            $table->integer('codCaso');
         });
     }
 
@@ -31,6 +32,6 @@ class Subfases extends Migration
     public function down()
     {
         //
-        Schema::drop('ib35a_subfases');
+        Schema::drop('ib35a_gastos');
     }
 }
