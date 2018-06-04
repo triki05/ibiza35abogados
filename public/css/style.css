@@ -1,0 +1,129 @@
+body{
+	color: #C20831;
+	font-family: arial;
+	font-size: 16px;
+}
+
+h1{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+h2{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+h3{
+	font-size: 17px;
+	font-weight: bold;
+}
+
+h4{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+a:link,a:visited,a:focus{
+	color: #C20831;
+}
+
+.logo{
+	position: absolute;
+	top: 131px;
+	
+}
+
+.navbar-light{
+	background-color: #F8F8F8;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	margin: 1em;
+}
+
+.navbar-light .navbar-text a:link,.navbar-light .navbar-text a:visited,.navbar-light .navbar-text a:focus{
+	color: #C20831;
+}
+
+a.btn.btn-danger:link,a.btn.btn-danger:visited,a.btn.btn-danger:focus{
+	color: #FFFFFF;
+}
+
+.form-login{
+	position: absolute;
+	top: 35em;
+}
+.input-group-text{
+	background-color: #C20831;
+	border-color: #C20831;
+	color: #FFFFFF;
+}
+input.form-control,select.custom-select{
+	border-color: #C20831;
+	color: #C20831;
+}
+
+input.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #C20831;
+    opacity: 0.6; /* Firefox */
+}
+
+input.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #C20831;
+    opacity: 0.6;
+}
+
+input.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: #C20831;
+    opacity: 0.6;
+}
+
+div.card{
+	border-color: #C20831;
+}
+
+div.card div.card-header{
+	background-color: #C20831;
+	color: #FFFFFF;
+}
+
+.breadcrumb{
+	background-color: white;
+}
+
+.breadcrumb-item + .breadcrumb-item::before{
+	content: " > ";
+	color: #C20831;
+}
+
+.breadcrumb-item > a{
+	text-decoration: none;
+	color: #0000FF;
+}
+
+.breadcrumb > .active a{
+	font-weight: bold;
+	color: #C20831;
+}
+.pagination{
+	margin: 0 auto;
+}
+.page-item.active .page-link{
+	background-color: #C20831;
+	border-color: #C20831;
+}
+.page-item.active .page-link:hover{
+	background-color: #C20831;
+	border-color: #C20831;
+	color: #FFFFFF;
+}
+.page-item .page-link:hover{
+	background-color: rgba(194, 8, 49, 0.8) ;
+	border-color:rgba(194, 8, 49, 0.8) ;
+	color: #FFFFFF;
+}
+@media(max-width:568px){
+	.form-login{
+		top: 20em;
+	}
+}
