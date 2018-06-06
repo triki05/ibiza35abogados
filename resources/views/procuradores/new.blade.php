@@ -7,8 +7,8 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{url('/home')}}">Inicio</a></li>
-				<li class="breadcrumb-item"><a href="{{url('/menu-tribunales')}}">Gestión de tribunales</a></li>
-				<li class="breadcrumb-item active"><a href="{{route('nuevoTribunal')}}">Nuevo</a>
+				<li class="breadcrumb-item"><a href="{{url('/menu-procuradores')}}">Gestión de procuradores</a></li>
+				<li class="breadcrumb-item active"><a href="{{route('nuevo-procurador')}}">Nuevo</a>
 			</ol>
 		</nav>
 	</div>
@@ -17,12 +17,12 @@
 	<div class="row">
 		<div class="col-10 offset-1">
     		<div class="card">
-    			<div class="card-header"><h1>Nuevo Tribunal</h1></div>
+    			<div class="card-header"><h1>Nuevo procurador</h1></div>
     			<div class="card-body">
     				@if(Session::has("message"))
             			<div class="alert alert-success text-center">{{Session::get("message")}}</div>
             		@endif
-    				<form action="{{route('save-tribunal')}}" method="post" class="form-inline">
+    				<form action="{{route('save-procurador')}}" method="post" class="form-inline">
     				{!! csrf_field() !!}
     					@if($errors->has())
     						@foreach($errors->all() as $error)
@@ -30,10 +30,16 @@
     						@endforeach
     					@endif
     					<div class="input-group col-md-3 mt-2 mb-2">
-    						<input type="text" class="form-control" placeholder="Tipo" name="tipo" value="{{old('tipo')}}">
+    						<input type="text" class="form-control" placeholder="DNI" name="dni" value="{{old('dni')}}">
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
-    						<input type="text" class="form-control" placeholder="Número de sección" name="numSeccion" value="{{old('numSeccion')}}">
+    						<input type="text" class="form-control" placeholder="Nombre" name="nombre" value="{{old('nombre')}}">
+    					</div>
+    					<div class="input-group col-md-3 mt-2 mb-2">
+    						<input type="text" class="form-control" placeholder="Primer apellido" name="apellido1" value="{{old('apellido1')}}">
+    					</div>
+    					<div class="input-group col-md-3 mt-2 mb-2">
+    						<input type="text" class="form-control" placeholder="Segundo apellido" name="apellido2" value="{{old('apellido2')}}">
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
     						<input type="text" class="form-control" placeholder="Dirección" name="direccion" value="{{old('direccion')}}">
@@ -50,22 +56,29 @@
     						</select>
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
-    						<select name="municipio" id="municipio" class="custom-select">
-    							<option selected>Selecciona un municipio</option>
+    						<select name="codMunicipio" id="municipio" class="custom-select">
+    							<option value="" selected>Selecciona un municipio</option>
     						</select>
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
-    						<input type="text" name="tlf" placeholder="Teléfono" class="form-control" value="{{old('tlf')}}">
+    						<input type="text" name="empresa" class="form-control" placeholder="Empresa" value="{{old('empresa')}}">
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
-    						<input type="text" name="fax" placeholder="Fax" class="form-control" value="{{old('fax')}}">
+    						<input type="text" name="tlfFijo1" placeholder="Teléfono fijo" class="form-control" value="{{old('tlfFijo1')}}">
     					</div>
+    					<div class="input-group col-md-3 mt-2 mb-2">
+    						<input type="text" name="tlfMovil1" placeholder="Teléfono móvil" class="form-control" value="{{old('tlfMovil1')}}">
+    					</div>
+    					<div class="input-group col-md-3 mt-2 mb-2">
+    						<input type="email" name="email1" placeholder="e-mail" class="form-control" value="{{old('email1')}}">
+    					</div>
+    					<input type="hidden" name="tipo" value="Procurador">
     					<div class="col-12 m-4"></div>
     					<div class="input-group col-md-1 offset-md-5">
     						<button type="submit" class="btn btn-danger">Guardar</button>
     					</div>
     					<div class="input-group col-md-6">
-    						<a href="{{url('/menu-tribunales')}}" class="btn btn-danger">Volver</a>
+    						<a href="{{url('/menu-procuradores')}}" class="btn btn-danger">Volver</a>
     					</div>
     				</form>
     			</div>
@@ -79,6 +92,7 @@ $(document).ready(function(){
 	   $("#provincia").change(function(event){
 	      $.get("/municipios/"+event.target.value,function(response,state){
 		      $("#municipio").empty();
+		      $("#municipio").append("<option value=''>Selecciona un municipio</option>");
 		      for(i=0;i<response.length;i++){
 			      $("#municipio").append("<option value='"+response[i].codigo+"'>"+response[i].nombre+"</option>");
 			  }

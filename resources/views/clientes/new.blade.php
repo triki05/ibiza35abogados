@@ -57,7 +57,7 @@
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
     						<select name="municipio" id="municipio" class="custom-select">
-    							<option selected>Selecciona un municipio</option>
+    							<option value="" selected>Selecciona un municipio</option>
     						</select>
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
@@ -92,6 +92,7 @@ $(document).ready(function(){
 	   $("#provincia").change(function(event){
 	      $.get("/municipios/"+event.target.value,function(response,state){
 		      $("#municipio").empty();
+		      $("#municipio").append("<option value=''>Selecciona un municipio</option>");
 		      for(i=0;i<response.length;i++){
 			      $("#municipio").append("<option value='"+response[i].codigo+"'>"+response[i].nombre+"</option>");
 			  }

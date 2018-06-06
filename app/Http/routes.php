@@ -24,42 +24,86 @@ Route::auth();
 Route::group(['middleware'=>['auth']],function(){
     
     Route::get('/home', 'HomeController@index');
-    Route::get('/menu-clientes', 'ClientesController@index');
-    Route::get('/menu-contrarios','ContrariosController@index');
-    Route::get('/menu-tribunales', 'TribunalesController@index');
-    Route::get('/menu-procuradores','ProcuradoresController@index');
-    Route::get('/menu-casos','CasosController@index');
+    
     Route::get('/menu-cobros','CobrosController@index');
+    
     Route::get('/agenda','AgendaController@index');
+    
+    Route::get('/municipios/{id}','ProvinciasController@getMunicipios');
+    
+    //Clientes
+    Route::get('/menu-clientes', 'ClientesController@index');
+    
     Route::get('/menu-clientes/nuevo',array(
         "as" => "nuevoCliente",
         "uses" => "ClientesController@newCliente"
     ));
-    Route::get('/municipios/{id}','ProvinciasController@getMunicipios');
+    
     Route::post('/menu-clientes/nuevo/guardar',array(
         'as' => 'save-cliente',
         'uses' => 'ClientesController@saveCliente'
     ));
+    
     Route::get('/menu-clientes/listado',array(
         'as' => 'list-customers',
         'uses' => 'ClientesController@listClientes'
     ));
+    
+    //Contrarios
+    Route::get('/menu-contrarios','ContrariosController@index');
+    
     Route::get('/menu-contrarios/nuevo',array(
         'as' => 'nuevoContrario',
         'uses' => 'ContrariosController@newContrario'
     ));
+    
     Route::post('/menu-contrarios/nuevo/guardar',array(
         'as' => 'save-contrario',
         'uses' => 'ContrariosController@saveContrario'
     ));
+    
     Route::get('/menu-contrarios/listado',array(
         'as' => 'list-contrarios',
         'uses' => 'ContrariosController@listContrarios'
     ));
     
+    //Tribunales
+    Route::get('/menu-tribunales', 'TribunalesController@index');
+    
     Route::get('/menu-tribunales/nuevo',array(
         "as" => "nuevoTribunal",
         "uses" => "TribunalesController@newTribunal"
     ));
+    
+    Route::post('/menu-tribunales/nuevo/guardar',array(
+        'as' => 'save-tribunal',
+        'uses' => 'TribunalesController@saveTribunal'
+    ));
+    
+    Route::get('/menu-tribunales/listado',array(
+        'as' => 'list-tribunales',
+        'uses' => 'TribunalesController@listTribunales'
+    ));
+    
+    //Procuradores
+    Route::get('/menu-procuradores','ProcuradoresController@index');
+    
+    Route::get('/menu-procuradores/nuevo',[
+        'as' => 'nuevo-procurador',
+        'uses' => 'ProcuradoresController@nuevo'
+    ]);
+    
+    Route::post('/menu-procuradores/nuevo/guardar',[
+        'as' => 'save-procurador',
+        'uses' => 'ProcuradoresController@guardar'
+    ]);
+    
+    Route::get('/menu-procuradores/listado',[
+        'as' => 'list-procuradores',
+        'uses' => 'ProcuradoresController@listar'
+    ]);
+    
+    
+    //Casos
+    Route::get('/menu-casos','CasosController@index');
 });
-

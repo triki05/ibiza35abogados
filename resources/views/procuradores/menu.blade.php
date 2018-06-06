@@ -17,8 +17,8 @@
 		<div class="col-sm-8 offset-sm-2">
 			<div class="text-center">
 				<h1>Gestión de procuradores</h1>
-				<div class="col-md-6 offset-md-3 mb-2"><a href="#" class="btn btn-danger col-12">Nuevo</a></div>
-				<div class="col-md-6 offset-md-3 mb-2"><a href="#" class="btn btn-danger col-12">Listado</a></div>
+				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('nuevo-procurador') }}" class="btn btn-danger col-12">Nuevo</a></div>
+				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-procuradores') }}" class="btn btn-danger col-12">Listado</a></div>
 			</div>
 		</div>
 	</div>

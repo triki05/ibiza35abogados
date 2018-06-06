@@ -18,7 +18,7 @@
 			<div class="text-center">
 				<h1>Gestión de tribunales</h1>
 				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('nuevoTribunal') }}" class="btn btn-danger col-12">Dar de alta</a></div>
-				<div class="col-md-6 offset-md-3 mb-2"><a href="#" class="btn btn-danger col-12">Listado</a></div>
+				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-tribunales') }}" class="btn btn-danger col-12">Listado</a></div>
 			</div>
 		</div>
 	</div>

@@ -20,7 +20,7 @@ class ContrariosController extends Controller
     
     public function saveContrario(Request $request){
         $this->validate($request,[
-            'dni' => 'required|alpha_num|size:9',
+            'dni' => 'required|alpha_num|size:9|unique:ib35a_personas,dni',
             'nombre' => 'required|alpha',
             'apellido1' => 'required|alpha',
             'apellido2' => 'required|alpha',
@@ -29,7 +29,7 @@ class ContrariosController extends Controller
             'municipio' => 'required',
             'tlfFijo1' => 'digits:9',
             'tlfMovil1' => 'digits:9',
-            'email1' => 'email'
+            'email1' => 'email|unique:ib35a_personas,mail1'
         ]);
         
         $cliente = new Personas();

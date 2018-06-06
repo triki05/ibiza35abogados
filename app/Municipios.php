@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Municipios extends Model
 {
@@ -10,5 +11,10 @@ class Municipios extends Model
     
     public static function municipios($id){
         return Municipios::where('codProvincia','=',$id)->get();
+    }
+    
+  
+    public function tribunales(){
+        return $this->hasMany("App\Tribunales",'codMuncipio');
     }
 }

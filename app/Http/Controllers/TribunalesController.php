@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Provincias;
+use App\Tribunales;
+use App\Municipios;
 
 class TribunalesController extends Controller
 {
@@ -26,7 +28,29 @@ class TribunalesController extends Controller
             'numSeccion' => 'required',
             'direccion' => 'required',
             'codpostal' => 'required',
-            'codMunicipio' => 'required',
+            'municipio' => 'required',
+        ]);
+        
+        $tribunal = new Tribunales();
+        
+        $tribunal->tipo = $request->input('tipo');
+        $tribunal->numSeccion = $request->input('numSeccion');
+        $tribunal->direccion = $request->input('direccion');
+        $tribunal->codpostal = $request->input('codpostal');
+        $tribunal->codMunicipio = $request->get('municipio');
+        $tribunal->tlf1 = $request->input('tlf');
+        $tribunal->fax1 = $request->input('fax');
+        
+        $tribunal->save();
+        
+        return redirect()->route('nuevoTribunal')->with(["message"=>"Tribunal guardado correctamente"]);
+    }
+    
+    public function listTribunales(){
+        $tribunales = Tribunales::all();
+        
+        return view('tribunales.list',[
+            'tribunales' => $tribunales
         ]);
     }
 }
