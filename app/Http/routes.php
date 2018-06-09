@@ -106,4 +106,24 @@ Route::group(['middleware'=>['auth']],function(){
     
     //Casos
     Route::get('/menu-casos','CasosController@index');
+    
+    Route::get('/menu-casos/nuevo',[
+        'as' => 'new-case',
+        'uses' => 'CasosController@nuevo'
+    ]);
+    
+    Route::post('/menu-casos/nuevo/guardar',[
+        'as' => 'save-case',
+        'uses' => 'CasosController@guardar'
+    ]);
+    
+    Route::get('/menu-casos/listar',[
+        'as' => 'list-case',
+        'uses' => 'CasosController@listar'
+    ]);
+    
+    Route::get('/menu-casos/periciales',[
+        'as' => 'list-periciales',
+        'uses' => 'CasosController@listarPericiales'
+    ]);
 });

@@ -8,8 +8,8 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{url('/home')}}">Inicio</a></li>
-				<li class="breadcrumb-item"><a href="{{url('/menu-tribunales')}}">Gestión de tribunales</a></li>
-				<li class="breadcrumb-item active"><a href="{{ route('list-tribunales') }}">Listado</a></li>
+				<li class="breadcrumb-item"><a href="{{url('/menu-casos')}}">Casos</a></li>
+				<li class="breadcrumb-item active"><a href="{{ route('list-case') }}">Listado</a></li>
 			</ol>
 		</nav>
 	</div>
@@ -18,32 +18,33 @@
 	<div class="row">
 		<div class="col-10 offset-1">
 			<div class="card">
-				<div class="card-header"><h1>Listado de tribunales</h1></div>
+				<div class="card-header"><h1>Listado de casos</h1></div>
 				<div class="card-body">
 				<div class="col-12">
-    					<table class="table" id="tribunales_table">
+    					<table class="table" id="cases_table">
     						<thead>
     							<tr>
-    								<th scope="col">Tipo</th>
-    								<th scope="col">Número de sección</th>
-    								<th scope="col">Dirección</th>
-    								<th scope="col">Código postal</th>
-    								<th scope="col">Muncipio</th>
-    								<th scope="col">Teléfono</th>
-    								<th scope="col">Fax</th>
+    								<th scope="col">Referencia</th>
+    								<th scope="col">Jurisdicción</th>
+    								<th scope="col">Asunto</th>
+    								<th scope="col">Cod. Encargo</th>
+    								<th scope="col">Estado</th>
+    								<th scope="col">Cliente</th>
     								<th scope="col">Opciones</th>
     							</tr>
     						</thead>
     						<tbody>
-    							@foreach($tribunales as $tribunal)
+    							@foreach($casos as $caso)
+    							
     							<tr>
-    								<td>{{ $tribunal->tipo }}</td>
-    								<td>{{ $tribunal->numSeccion}}</td>
-    								<td>{{ $tribunal->direccion }}</td>
-    								<td>{{ $tribunal->codpostal }}</td>
-    								<td>{{ $tribunal->municipios->nombre }}</td>    								
-    								<td>{{ $tribunal->tlf1 }}</td>
-    								<td>{{ $tribunal->fax1 }}</td>
+    								<td>{{ $caso->referencia }}</td>
+    								<td>{{ $caso->jurisdiccion }}</td>
+    								<td>{{ $caso->asunto }}</td>
+    								<td>{{ $caso->codigoEncargo }}</td>
+    								<td>{{ $caso->estado }}</td>
+    								@foreach($caso->casosclientes as $casocliente)
+    								<td>{{ $casocliente->clientes->apellido1." ".$casocliente->clientes->apellido2.", ".$casocliente->clientes->nombre }}</td>
+    								@endforeach
     								<td>
     									<div class="btn-group dropright">
                                             <button type="button" class="btn btn-small btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,11 +57,11 @@
                                         </div>
     								</td>
     							</tr>
+    						
     							@endforeach
     						</tbody>
     					</table>
     				</div>
-
 				</div>
 			</div>
 		</div>
@@ -70,7 +71,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	var table = $('#tribunales_table').DataTable({
+	var table = $('#cases_table').DataTable({
 		"language":{
 			"paginate":{
 				"first": "<<",

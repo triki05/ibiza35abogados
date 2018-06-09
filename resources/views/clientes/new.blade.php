@@ -51,7 +51,7 @@
     						<select name="provincia" id="provincia" class="custom-select">
     							<option selected>Selecciona una provincia</option>
     							@foreach($provincias as $provincia)
-    							<option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+    							<option value="{{\Crypt::encrypt($provincia->id)}}">{{$provincia->nombre}}</option>
     							@endforeach
     						</select>
     					</div>

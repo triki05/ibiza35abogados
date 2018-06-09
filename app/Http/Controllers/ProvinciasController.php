@@ -12,6 +12,7 @@ class ProvinciasController extends Controller
 {
     //
     public function getMunicipios(Request $request, $id){
+        $id = \Crypt::decrypt($id);
         if($request->ajax()){
             $municipios = Municipios::municipios($id);
             return response()->json($municipios);
