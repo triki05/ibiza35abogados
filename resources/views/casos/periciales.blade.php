@@ -45,17 +45,7 @@
     								@foreach($caso->casosclientes as $casocliente)
     								<td>{{ $casocliente->clientes->apellido1." ".$casocliente->clientes->apellido2.", ".$casocliente->clientes->nombre }}</td>
     								@endforeach
-    								<td>
-    									<div class="btn-group dropright">
-                                            <button type="button" class="btn btn-small btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-bars"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="">Modificar</a></li>
-                                                <li><a href="">Prueba</a></li>
-                                            </ul>
-                                        </div>
-    								</td>
+    								<td><a href="{{ route('caso',['caso_id'=>Crypt::encrypt($caso->id)]) }}"><i class="mdi mdi-binoculars" style="font-size: 22px"></i></a></td>
     							</tr>
     						
     							@endforeach

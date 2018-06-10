@@ -9,7 +9,7 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{url('/home')}}">Inicio</a></li>
 				<li class="breadcrumb-item"><a href="{{url('/menu-casos')}}">Casos</a></li>
-				<li class="breadcrumb-item active"><a href="{{ route('list-case') }}">Particulares</a></li>
+				<li class="breadcrumb-item active"><a href="{{ route('list-turno-oficio') }}">Turno de oficio</a></li>
 			</ol>
 		</nav>
 	</div>
@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-10 offset-1">
 			<div class="card">
-				<div class="card-header"><h1>Particulares</h1></div>
+				<div class="card-header"><h1>Turno de oficio</h1></div>
 				<div class="card-body">
 				<div class="col-12">
     					<table class="table" id="cases_table">

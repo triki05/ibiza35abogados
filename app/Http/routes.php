@@ -126,4 +126,14 @@ Route::group(['middleware'=>['auth']],function(){
         'as' => 'list-periciales',
         'uses' => 'CasosController@listarPericiales'
     ]);
+    
+    Route::get('/menu-casos/turno-oficio',[
+        'as' => 'list-turno-oficio',
+        'uses' => 'CasosController@listarTurnoOficio'
+    ]);
+    
+    Route::get('/menu-casos/caso/{caso_id}',[
+        'as' => 'caso',
+        'uses' => 'CasosController@caso'
+    ]);
 });

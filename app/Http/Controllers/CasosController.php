@@ -57,11 +57,30 @@ class CasosController extends Controller
     
     public function listar(){
         $casos = Casos::where(['categoriaCliente'=>'particular'])->get();
-        return view('casos.list',['casos'=>$casos]);
+        return view('casos.list',[
+            'casos'=>$casos
+        ]);
     }
     
     public function listarPericiales(){
         $casos = Casos::where(['categoriaCliente'=>'pericial'])->get();
-        return view('casos.periciales',['casos'=>$casos]);
+        return view('casos.periciales',[
+            'casos'=>$casos
+        ]);
+    }
+    
+    public function listarTurnoOficio(){
+        $casos = Casos::where(['categoriaCliente'=>'turno-oficio'])->get();
+        return view('casos.turno-oficio',[
+            'casos' => $casos
+        ]);
+    }
+    
+    public function caso($caso_id){
+        $caso = Casos::find(\Crypt::decrypt($caso_id));
+        
+        return view('casos.caso',[
+            'caso' => $caso
+        ]);
     }
 }

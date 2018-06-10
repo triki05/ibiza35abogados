@@ -18,8 +18,8 @@
 			<div class="text-center">
 				<h1>Casos</h1>
 				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('new-case') }}" class="btn btn-danger col-12">Nuevo</a></div>
-				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-case') }}" class="btn btn-danger col-12">Listado</a></div>
-				<div class="col-md-6 offset-md-3 mb-2"><a href="#" class="btn btn-danger col-12">Turno de oficio</a></div>
+				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-case') }}" class="btn btn-danger col-12">Particulares</a></div>
+				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-turno-oficio') }}" class="btn btn-danger col-12">Turno de oficio</a></div>
 				<div class="col-md-6 offset-md-3 mb-2"><a href="{{ route('list-periciales') }}" class="btn btn-danger col-12">Periciales</a></div>
 			</div>
 		</div>
