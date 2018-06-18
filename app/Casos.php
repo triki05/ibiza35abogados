@@ -18,4 +18,8 @@ class Casos extends Model
         return $this->hasMany('App\CasosClientes','casos_id');
     }
     
+    public function documentos(){
+        return $this->hasMany('App\Documento','id_casos');
+    }
+    
 }

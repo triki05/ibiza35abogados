@@ -10,15 +10,20 @@ use App\Http\Requests;
 
 class ContrariosController extends Controller
 {
+    //Función para devolver la página principal
     public function index(){
         return view('contrarios.menu');
     }
+    
+    //Función para devolver la página para crear un nuevo contrario
     public function newContrario(){
         $provincias = Provincias::all();
         return view('contrarios.new')->with("provincias",$provincias);
     }
     
+    //Función para guardar un contrario en la base de datos
     public function saveContrario(Request $request){
+        //Validación de los datos recibidos por post
         $this->validate($request,[
             'dni' => 'required|alpha_num|size:9|unique:ib35a_personas,dni',
             'nombre' => 'required|alpha',
@@ -32,24 +37,27 @@ class ContrariosController extends Controller
             'email1' => 'email|unique:ib35a_personas,mail1'
         ]);
         
-        $cliente = new Personas();
-        $cliente->dni = $request->input("dni");
-        $cliente->nombre = $request->input("nombre");
-        $cliente->apellido1 = $request->input("apellido1");
-        $cliente->apellido2 = $request->input("apellido2");
-        $cliente->direccion = $request->input("direccion");
-        $cliente->codpostal = $request->input("codpostal");
-        $cliente->codMunicipio = $request->get('municipio');
-        $cliente->tipo = $request->input("tipo");
-        $cliente->tlfFijo1 = $request->input("tlfFijo1");
-        $cliente->tlfMovil1 = $request->input("tlfMovil1");
-        $cliente->mail1 = $request->input("email1");
+        //Creación del objeto, asignación de valores y guardado en la base de datos
+        $contrario = new Personas();
+        $contrario->dni = $request->input("dni");
+        $contrario->nombre = $request->input("nombre");
+        $contrario->apellido1 = $request->input("apellido1");
+        $contrario->apellido2 = $request->input("apellido2");
+        $contrario->direccion = $request->input("direccion");
+        $contrario->codpostal = $request->input("codpostal");
+        $contrario->codMunicipio = $request->get('municipio');
+        $contrario->tipo = $request->input("tipo");
+        $contrario->tlfFijo1 = $request->input("tlfFijo1");
+        $contrario->tlfMovil1 = $request->input("tlfMovil1");
+        $contrario->mail1 = $request->input("email1");
         
-        $cliente->save();
+        $contrario->save();
         
+        //Redirección a a la página de nuevo contrario con mensaje flash
         return redirect()->route('nuevoContrario')->with(['message' => "Contrario guardado correctamente"]);
     }
     
+    //Función para listar los contrarios
     public function listContrarios(){
         $contrarios = Personas::where(['tipo'=>'Contrario'])->get();
         return view('contrarios.list',[

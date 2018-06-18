@@ -8,7 +8,7 @@ class CasosClientes extends Model
 {
     protected $table = 'ib35a_casosclientes';
     protected $fillable = [
-        'casos_id','cliente_id','fechaVencimiento','naturaleza','numeroFase','comentarios'
+        'casos_id','clientes_id','contrarios_id','fechaVencimiento','naturaleza','numeroFase','comentarios'
     ];
     
     public $timestamps = false;

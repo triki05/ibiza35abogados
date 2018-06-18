@@ -136,4 +136,29 @@ Route::group(['middleware'=>['auth']],function(){
         'as' => 'caso',
         'uses' => 'CasosController@caso'
     ]);
+    
+    Route::post('/menu-casos/caso/update/{caso_id}',[
+        'as' => 'update-caso',
+        'uses' => "CasosController@update"
+    ]);
+    
+    Route::post('/menu-casos/caso/update-casosclientes/{id}',[
+        'as' => 'update-casocliente',
+        'uses' => 'CasosController@updateCasoCliente'
+    ]);
+    
+    Route::post('/menu-casos/caso/save-file',[
+        'as' => 'caso-save-file',
+        'uses' => 'DocumentoController@saveFile'
+    ]);
+    
+    Route::get('/mostrar-documento/{name}',[
+       'as' => 'ver-documento',
+        'uses' => 'DocumentoController@mostrarDocumento'
+    ]);
+    
+    Route::get('/borrar-documento/{id}',[
+        'as' => 'delete-document',
+        'uses' => 'DocumentoController@deleteDocument'
+    ]);
 });

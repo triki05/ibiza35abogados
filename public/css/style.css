@@ -122,6 +122,14 @@ div.card div.card-header{
 	border-color:rgba(194, 8, 49, 0.8) ;
 	color: #FFFFFF;
 }
+.custom-file-label::after{
+	content:'';
+	background-color: #fff ;
+	border: 0;
+}
+[hidden]{
+	display: none !important;
+}
 @media(max-width:568px){
 	.form-login{
 		top: 20em;

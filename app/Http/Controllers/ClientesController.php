@@ -11,17 +11,19 @@ use App\Provincias;
 
 class ClientesController extends Controller
 {
-    //
+    //Devolución de la página principal
     public function index(){
         return view('clientes.menu');
     }
     
+    //Devolución de la página para un nuevo cliente
     public function newCliente(){
         $provincias = Provincias::all();
         return view('clientes.new')->with("provincias",$provincias);
     }
     
     public function saveCliente(Request $request){
+        //Validación de los datos recibidos por post
         $this->validate($request,[
             'dni' => 'required|alpha_num|size:9|unique:ib35a_personas,dni',
             'nombre' => 'required|alpha',
@@ -35,6 +37,7 @@ class ClientesController extends Controller
             'email1' => 'email|unique:ib35a_personas,mail1'
         ]);
         
+        //Creación del objeto y asignación de los valores recibidos del formulario
         $cliente = new Personas();
         $cliente->dni = $request->input("dni");
         $cliente->nombre = $request->input("nombre");
@@ -50,9 +53,11 @@ class ClientesController extends Controller
         
         $cliente->save();
         
+       //Redirección a la página de creación de cliente con un mensaje flash
         return redirect()->route('nuevoCliente')->with(['message' => "Cliente guardado correctamente"]);
     }
    
+    //Función para devolver la vista del listado de clientes
     public function listClientes(){
         $clientes = Personas::where(['tipo'=>'Cliente'])->get();
         return view('clientes.list',[
