@@ -43,15 +43,7 @@
     								<td>{{ $contrario->mail1 }}</td>
     								<td>{{ $contrario->direccion }}</td>
     								<td>
-    									<div class="btn-group dropright">
-                                            <button type="button" class="btn btn-small btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-bars"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="">Modificar</a></li>
-                                                <li><a href="">Prueba</a></li>
-                                            </ul>
-                                        </div>
+    									<a href="{{route('persona',['persona'=>\Crypt::encrypt($contrario->id)])}}"><i class="mdi mdi-24px mdi-account-edit"></i></a>
     								</td>
     							</tr>
     							@endforeach
@@ -64,7 +56,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){

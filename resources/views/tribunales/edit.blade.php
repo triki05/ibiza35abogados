@@ -8,7 +8,8 @@
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="{{url('/home')}}">Inicio</a></li>
 				<li class="breadcrumb-item"><a href="{{url('/menu-tribunales')}}">Gestión de tribunales</a></li>
-				<li class="breadcrumb-item active"><a href="{{route('nuevoTribunal')}}">Nuevo</a></li>
+				<li class="breadcrumb-item"><a href="{{route('list-tribunales')}}">Listado</a></li>
+				<li class="breadcrumb-item active"><a href="{{route('edit-tribunal',['tribunal'=>\Crypt::encrypt($tribunal->id)])}}">Editar Tribunal</a></li>
 			</ol>
 		</nav>
 	</div>
@@ -17,12 +18,12 @@
 	<div class="row">
 		<div class="col-10 offset-1">
 			<div class="card">
-				<div class="card-header"><h1>Nuevo Tribunal</h1></div>
+				<div class="card-header"><h1>Editar Tribunal</h1></div>
 				<div class="card-body">
 					@if(Session::has("message"))
 					<div class="alert alert-success text-center">{{Session::get("message")}}</div>
 					@endif
-					<form action="{{route('save-tribunal')}}" method="post" class="form-inline">
+					<form action="{{route('update-tribunal',['tribunal'=>\Crypt::encrypt($tribunal->id)])}}" method="post" class="form-inline">
 						{!! csrf_field() !!}
 						@if($errors->has())
 						@foreach($errors->all() as $error)
@@ -30,42 +31,52 @@
 						@endforeach
 						@endif
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" class="form-control" placeholder="Tipo" name="tipo" value="{{old('tipo')}}">
+							<input type="text" class="form-control" placeholder="Tipo" name="tipo" value="{{$tribunal->tipo}}">
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" class="form-control" placeholder="Número de sección" name="numSeccion" value="{{old('numSeccion')}}">
+							<input type="text" class="form-control" placeholder="Número de sección" name="numSeccion" value="{{$tribunal->numSeccion}}">
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" class="form-control" placeholder="Dirección" name="direccion" value="{{old('direccion')}}">
+							<input type="text" class="form-control" placeholder="Dirección" name="direccion" value="{{$tribunal->direccion}}">
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" class="form-control" placeholder="Código Postal" name="codpostal" value="{{old('codpostal')}}">
+							<input type="text" class="form-control" placeholder="Código Postal" name="codpostal" value="{{$tribunal->codpostal}}">
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
 							<select name="provincia" id="provincia" class="custom-select">
-								<option selected>Selecciona una provincia</option>
+								<option>Selecciona una provincia</option>
 								@foreach($provincias as $provincia)
-								<option value="{{\Crypt::encrypt($provincia->id)}}">{{$provincia->nombre}}</option>
+									@if($municipioTribunal->codProvincia == $provincia->id )
+										<option value="{{\Crypt::encrypt($provincia->id)}}" selected>{{$provincia->nombre}}</option>
+									@else
+										<option value="{{\Crypt::encrypt($provincia->id)}}">{{$provincia->nombre}}</option>
+									@endif
 								@endforeach
 							</select>
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
 							<select name="municipio" id="municipio" class="custom-select">
-								<option selected>Selecciona un municipio</option>
+								@foreach($municipios as $municipio)
+									@if($municipio->codigo == $municipioTribunal->codigo)
+										<option value="{{$municipio->codigo}}" selected>{{$municipio->nombre}}</option>
+									@else
+										<option value="{{$municipio->codigo}}">{{$municipio->nombre}}</option>
+									@endif
+								@endforeach
 							</select>
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" name="tlf" placeholder="Teléfono" class="form-control" value="{{old('tlf')}}">
+							<input type="text" name="tlf" placeholder="Teléfono" class="form-control" value="{{$tribunal->tlf1}}">
 						</div>
 						<div class="input-group col-md-3 mt-2 mb-2">
-							<input type="text" name="fax" placeholder="Fax" class="form-control" value="{{old('fax')}}">
+							<input type="text" name="fax" placeholder="Fax" class="form-control" value="{{$tribunal->fax1}}">
 						</div>
 						<div class="col-12 m-4"></div>
 						<div class="input-group col-md-1 offset-md-5">
 							<button type="submit" class="btn btn-danger">Guardar</button>
 						</div>
 						<div class="input-group col-md-6">
-							<a href="{{url('/menu-tribunales')}}" class="btn btn-danger">Volver</a>
+							<a href="{{route('list-tribunales')}}" class="btn btn-danger">Volver</a>
 						</div>
 					</form>
 				</div>

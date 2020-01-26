@@ -46,6 +46,7 @@ class ContrariosController extends Controller
         $contrario->direccion = $request->input("direccion");
         $contrario->codpostal = $request->input("codpostal");
         $contrario->codMunicipio = $request->get('municipio');
+        $contrario->empresa = $request->get('empresa');
         $contrario->tipo = $request->input("tipo");
         $contrario->tlfFijo1 = $request->input("tlfFijo1");
         $contrario->tlfMovil1 = $request->input("tlfMovil1");

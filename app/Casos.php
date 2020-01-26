@@ -22,4 +22,7 @@ class Casos extends Model
         return $this->hasMany('App\Documento','id_casos');
     }
     
+    public function fases(){
+        return $this->hasMany('App\Fase','descriptor','referencia');
+    }
 }

@@ -46,6 +46,7 @@ class ClientesController extends Controller
         $cliente->direccion = $request->input("direccion");
         $cliente->codpostal = $request->input("codpostal");
         $cliente->codMunicipio = $request->get('municipio');
+        $cliente->empresa = $request->input('empresa');
         $cliente->tipo = $request->input("tipo");
         $cliente->tlfFijo1 = $request->input("tlfFijo1");
         $cliente->tlfMovil1 = $request->input("tlfMovil1");

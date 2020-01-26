@@ -21,53 +21,43 @@
 				<div class="card-header"><h1>Listado de tribunales</h1></div>
 				<div class="card-body">
 				<div class="col-12">
-    					<table class="table" id="tribunales_table">
-    						<thead>
-    							<tr>
-    								<th scope="col">Tipo</th>
-    								<th scope="col">Número de sección</th>
-    								<th scope="col">Dirección</th>
-    								<th scope="col">Código postal</th>
-    								<th scope="col">Muncipio</th>
-    								<th scope="col">Teléfono</th>
-    								<th scope="col">Fax</th>
-    								<th scope="col">Opciones</th>
-    							</tr>
-    						</thead>
-    						<tbody>
-    							@foreach($tribunales as $tribunal)
-    							<tr>
-    								<td>{{ $tribunal->tipo }}</td>
-    								<td>{{ $tribunal->numSeccion}}</td>
-    								<td>{{ $tribunal->direccion }}</td>
-    								<td>{{ $tribunal->codpostal }}</td>
-    								<td>{{ $tribunal->municipios->nombre }}</td>    								
-    								<td>{{ $tribunal->tlf1 }}</td>
-    								<td>{{ $tribunal->fax1 }}</td>
-    								<td>
-    									<div class="btn-group dropright">
-                                            <button type="button" class="btn btn-small btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-bars"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="">Modificar</a></li>
-                                                <li><a href="">Prueba</a></li>
-                                            </ul>
-                                        </div>
-    								</td>
-    							</tr>
-    							@endforeach
-    						</tbody>
-    					</table>
-    				</div>
+						<table class="table" id="tribunales_table">
+							<thead>
+								<tr>
+									<th scope="col">Tipo</th>
+									<th scope="col">Número de sección</th>
+									<th scope="col">Dirección</th>
+									<th scope="col">Código postal</th>
+									<th scope="col">Muncipio</th>
+									<th scope="col">Teléfono</th>
+									<th scope="col">Fax</th>
+									<th scope="col">Opciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($tribunales as $tribunal)
+								<tr>
+									<td>{{ $tribunal->tipo }}</td>
+									<td>{{ $tribunal->numSeccion}}</td>
+									<td>{{ $tribunal->direccion }}</td>
+									<td>{{ $tribunal->codpostal }}</td>
+									<td>{{ $tribunal->municipios->nombre }}</td>    								
+									<td>{{ $tribunal->tlf1 }}</td>
+									<td>{{ $tribunal->fax1 }}</td>
+									<td>
+										<a href="{{route('edit-tribunal',['tribunal'=>\Crypt::encrypt($tribunal->id)])}}"><i class="mdi mdi-24px mdi-pencil"></i></a>
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function(){
 	var table = $('#tribunales_table').DataTable({

@@ -41,7 +41,7 @@ a:link,a:visited,a:focus{
 	margin: 1em;
 }
 
-.navbar-light .navbar-text a:link,.navbar-light .navbar-text a:visited,.navbar-light .navbar-text a:focus{
+.navbar-light a.navbar-text:link,.navbar-light a.navbar-text:visited,.navbar-light a.navbar-text:focus{
 	color: #C20831;
 }
 

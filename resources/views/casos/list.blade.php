@@ -42,10 +42,12 @@
     								<td>{{ $caso->asunto }}</td>
     								<td>{{ $caso->codigoEncargo }}</td>
     								<td>{{ $caso->estado }}</td>
-    								@foreach($caso->casosclientes as $casocliente)
-    								<td>{{ $casocliente->clientes->apellido1." ".$casocliente->clientes->apellido2.", ".$casocliente->clientes->nombre }}</td>
-    								@endforeach
-    								<td><a href="{{ route('caso',['caso_id'=>Crypt::encrypt($caso->id)]) }}"><i class="mdi mdi-binoculars" style="font-size: 22px"></i></a></td>
+    								@php
+    								$casoCliente = $caso->casosclientes()->first();
+    								@endphp
+    								<td>{{ $casoCliente->clientes->apellido1." ".$casoCliente->clientes->apellido2.", ".$casoCliente->clientes->nombre }}</td>
+    								
+    								<td><a href="{{ route('caso',['caso_id'=>Crypt::encrypt($caso->id)]) }}"><i class="mdi mdi-24px mdi-pencil"></i></a></td>
     							</tr>
     						
     							@endforeach
@@ -57,8 +59,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function(){
 	var table = $('#cases_table').DataTable({

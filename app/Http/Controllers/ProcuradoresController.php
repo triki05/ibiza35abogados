@@ -43,7 +43,7 @@ class ProcuradoresController extends Controller
         $procurador->apellido2 = $request->input("apellido2");
         $procurador->direccion = $request->input("direccion");
         $procurador->codpostal = $request->input("codpostal");
-        $procurador->codMunicipio = $request->get('municipio');
+        $procurador->codMunicipio = $request->get('codMunicipio');
         $procurador->tipo = $request->input("tipo");
         $procurador->tlfFijo1 = $request->input("tlfFijo1");
         $procurador->tlfMovil1 = $request->input("tlfMovil1");

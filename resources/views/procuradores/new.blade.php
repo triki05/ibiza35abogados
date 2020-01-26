@@ -51,7 +51,7 @@
     						<select name="provincia" id="provincia" class="custom-select">
     							<option selected>Selecciona una provincia</option>
     							@foreach($provincias as $provincia)
-    							<option value="{{$provincia->id}}">{{$provincia->nombre}}</option>
+    							<option value="{{\Crypt::encrypt($provincia->id)}}">{{$provincia->nombre}}</option>
     							@endforeach
     						</select>
     					</div>
@@ -59,9 +59,6 @@
     						<select name="codMunicipio" id="municipio" class="custom-select">
     							<option value="" selected>Selecciona un municipio</option>
     						</select>
-    					</div>
-    					<div class="input-group col-md-3 mt-2 mb-2">
-    						<input type="text" name="empresa" class="form-control" placeholder="Empresa" value="{{old('empresa')}}">
     					</div>
     					<div class="input-group col-md-3 mt-2 mb-2">
     						<input type="text" name="tlfFijo1" placeholder="Teléfono fijo" class="form-control" value="{{old('tlfFijo1')}}">
@@ -86,7 +83,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
 	   $("#provincia").change(function(event){

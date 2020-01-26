@@ -15,6 +15,9 @@ class Municipios extends Model
         return Municipios::where('codProvincia','=',$id)->get();
     }
     
+    public function provincia(){
+        return $this->belongsTo('App\Provincias','codProvincia');
+    }
   
     public function tribunales(){
         return $this->hasMany("App\Tribunales",'codMuncipio');
